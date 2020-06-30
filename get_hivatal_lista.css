@@ -23,7 +23,7 @@ table {
 	/*width: 100%;*/
 	font-size: small;}
 
-caption {
+caption, sub {
   text-align: left;
   font-style: italic;
   padding: 5px;
