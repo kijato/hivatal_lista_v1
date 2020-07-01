@@ -5,12 +5,16 @@ use WWW::Mechanize;
 use CAM::PDF;
 use XML::Parser;
 #use Data::Dumper;
-use UTF8; # Perl pragma to enable/disable UTF-8 (or UTF-EBCDIC) in source code (necessary if you want to use Unicode in function or var names)
+use utf8; # Perl pragma to enable/disable UTF-8 (or UTF-EBCDIC) in source code (necessary if you want to use Unicode in function or var names)
+#use Unicode::UTF8 # Encoding and decoding of UTF-8 encoding form
 use DateTime;
 
 BEGIN { $| = 1 } # Turn on autoflush.
 
 my $dt = DateTime->now;
+
+# Létrehozunk egy ideiglenes fájlt, mely jelzi, hogy a szkript éppen fut.
+my $tmpfile = $dt->ymd('').".tmp"; open FH,">$tmpfile"; print FH "$dt\n"; close FH;
 
 my $pdffile = "hivatal_lista_".$dt->ymd('').'.pdf';
 
@@ -137,3 +141,5 @@ foreach my $h ( @{$hivatalok} ) {
 close FH;
 
 unlink 'hivatalok.xml';
+unlink $pdffile;
+unlink $tmpfile;

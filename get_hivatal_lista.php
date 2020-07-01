@@ -16,13 +16,18 @@ function execInBackground($cmd) {
     }
 }
 
-if (file_exists("hivatal_lista_".date("Ymd").".csv")) {
-    //echo "The file $filename exists";
-} else {
-    //echo "The file $filename does not exist";
-	//execInBackground('perl get_hivatal_lista.pl');
-	exec('perl get_hivatal_lista.pl');
+
+if (!file_exists("hivatal_lista_".date("Ymd").".csv")) {
+	if (!file_exists(date("Ymd").".tmp")) {
+		execInBackground('perl get_hivatal_lista.pl');
+		//exec('perl get_hivatal_lista.pl');
+		print("A frissítés megkezdődött. Ez általában 1-2 percig tart, ennek elteltével a keresést ismételd meg.");
+	} else {
+		print("A frissítés folymatban van. 1-2 perc türelmet kérek, melynek elteltével a keresést ismételd meg.");
+	}
+	return;
 }
+
  
 //$path='.';
 //$files = array_diff(scandir($path), array('.', '..'));

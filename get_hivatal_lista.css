@@ -1,18 +1,32 @@
 body {
 	background-color: sepia;
 	padding: 5px;
-	font-family: Verdana,Arial;
-
-}
-
-div {
-	/*font-weight: bold;*/
-	background-color: whitesmoke;
-	padding: 5px;
+	font-family: Verdana, Arial;
 }
 
 fieldset {
 	border: 1px solid lightgray;
+	background-color: whitesmoke;
+}
+
+legend {
+	border: 1px solid lightgray;
+	background-color: white;
+}
+
+div {
+	/*font-weight: bold;*/
+	/*background-color: sepia;*/
+	padding: 5px;
+}
+
+label {
+	/*background-color: white;*/
+}
+
+input[type="text"] {
+	font-size:12px;
+	border: 1px solid gray;
 }
 
 table {
@@ -21,12 +35,13 @@ table {
 	/*border-collapse: separate;*/
 	border-spacing: 0px;
 	/*width: 100%;*/
-	font-size: small;}
+	font-size: small;
+}
 
 caption, sub {
-  text-align: left;
-  font-style: italic;
-  padding: 5px;
+	text-align: left;
+	font-style: italic;
+	padding: 5px;
 }
 
 td,th {
@@ -38,8 +53,21 @@ th {
 	background-color: whitesmoke;
 }
 
-table.myTable tr:first-child th:first-child td:first-child {
-      text-align: right;
+tr:hover {
+	border-color: red;
+}
+
+tr:hover > td {
+	/*padding: 8px 3px 8px 3px;*/
+	border-color: gray;
+}
+
+td:hover {
+	background-color: lavender;
+}
+
+table tr td:nth-child(1) {
+	text-align: right;
 }
 
 #warn {
