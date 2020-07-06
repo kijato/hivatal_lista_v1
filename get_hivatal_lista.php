@@ -21,9 +21,9 @@ if (!file_exists("hivatal_lista_".date("Ymd").".csv")) {
 	if (!file_exists(date("Ymd").".tmp")) {
 		execInBackground('perl get_hivatal_lista.pl');
 		//exec('perl get_hivatal_lista.pl');
-		print("A frissítés megkezdődött. Ez általában 1-2 percig tart, ennek elteltével a keresést ismételd meg.");
+		print("A napi frissítés megkezdődött. Ez általában 1-2 percig tart, ennek elteltével a keresést ismételd meg.");
 	} else {
-		print("A frissítés folymatban van. 1-2 perc türelmet kérek, melynek elteltével a keresést ismételd meg.");
+		print("A mai frissítés folymatban van. 1-2 perc türelmet kérek, melynek elteltével a keresést ismételd meg.");
 	}
 	return;
 }
@@ -33,7 +33,12 @@ if (!file_exists("hivatal_lista_".date("Ymd").".csv")) {
 //$files = array_diff(scandir($path), array('.', '..'));
 //foreach($file as $files) { if(is_file("$file")) { } } 
 
-$query = htmlspecialchars($_GET["query"]);
+if ( isset($_GET["query"]) ) {
+	$query = htmlspecialchars($_GET["query"]);
+} else {
+	die("Nincs keresőkifejezés...!");
+}
+
 $files = glob("hivatal_lista_*.csv");
 $file=$files[count($files)-1];
 
